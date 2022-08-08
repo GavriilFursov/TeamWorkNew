@@ -4,9 +4,17 @@ public class Main {
     public static void main(String[] args) {
         String[] products = {"Хлеб", "Молоко", "Мясо", "Картофель", "Конфета"};
         int[] prices = {56, 79, 550, 65, 200};
+        String[] specPriceSale = {products[0], products[2], products[4]};
         for (int i = 0; i < products.length; i++) {
-            System.out.println((i + 1) + ". " + products[i] + " - " + prices[i] + " руб/шт.");
+            System.out.print((i + 1) + ". " + products[i] + " - " + prices[i] + " руб/шт.");
+            if (products[i].equals(specPriceSale[0])
+                    || products[i].equals(specPriceSale[1])
+                    || products[i].equals(specPriceSale[2])) {
+                System.out.print("  Это товар по акции “ 3 по цене 2х ”.");
+            }
+            System.out.println();
         }
+
         int[] countOfProducts = new int[products.length];
         boolean[] fillOrNot = new boolean[products.length];
         Scanner scanner = new Scanner(System.in);
@@ -69,12 +77,21 @@ public class Main {
         int sum = 0;
         for (int i = 0; i < products.length; i++) {
             if (fillOrNot[i]) {
-                System.out.println(count + ". " + products[i] + "-"
-                        + countOfProducts[i] + "шт. "
-                        + prices[i] + " руб/шт., "
-                        + (countOfProducts[i] * prices[i]) + " руб. в сумме;");
-                count++;
-                sum += countOfProducts[i] * prices[i];
+                if (countOfProducts[i] % 3 == 0) {
+                    System.out.println(count + ". " + products[i] + "-"
+                            + countOfProducts[i] + "шт. "
+                            + prices[i] + " руб/шт., "
+                            + ((countOfProducts[i] * prices[i]) - ((countOfProducts[i] / 3) * prices[i]) + " руб. в сумме; АКЦИЯ =)"));
+                    count++;
+                    sum += ((countOfProducts[i] * prices[i]) - ((countOfProducts[i] / 3) * prices[i]));
+                } else {
+                    System.out.println(count + ". " + products[i] + "-"
+                            + countOfProducts[i] + "шт. "
+                            + prices[i] + " руб/шт., "
+                            + (countOfProducts[i] * prices[i]) + " руб. в сумме;");
+                    count++;
+                    sum += countOfProducts[i] * prices[i];
+                }
             }
         }
         System.out.println("  Итого: " + sum + " руб.");
