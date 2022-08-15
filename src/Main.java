@@ -4,13 +4,17 @@ public class Main {
     public static void main(String[] args) {
         String[] products = {"Хлеб", "Молоко", "Мясо", "Картофель", "Конфета"};
         int[] prices = {56, 79, 550, 65, 200};
+
         String[] specPriceSale = {products[0], products[2], products[4]};
+
         for (int i = 0; i < products.length; i++) {
+
             System.out.print((i + 1) + ". " + products[i] + " - " + prices[i] + " руб/шт.");
+
             if (products[i].equals(specPriceSale[0])
                     || products[i].equals(specPriceSale[1])
                     || products[i].equals(specPriceSale[2])) {
-                System.out.print("  Это товар по акции “ 3 по цене 2х ”.");
+                System.out.print("  Это товар по акции “ 3 по цене 2-х ”.");
             }
             System.out.println();
         }
@@ -77,6 +81,7 @@ public class Main {
         int sum = 0;
         for (int i = 0; i < products.length; i++) {
             if (fillOrNot[i]) {
+
                 if (countOfProducts[i] % 3 == 0) {
                     System.out.println(count + ". " + products[i] + "-"
                             + countOfProducts[i] + "шт. "
