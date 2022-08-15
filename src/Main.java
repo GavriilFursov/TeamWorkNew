@@ -51,15 +51,22 @@ public class Main {
                         System.out.println("Не верный номер продукта!");
                         continue;
                     }
-                    if (countOfProd < 0 || countOfProd > 100) {
-                        System.out.println(" Введено не приемлемое количество продуктов!");
+                    if (countOfProd > 100) {
+                        System.out.println(" Введено не приемлемо большое количество продуктов!");
                         continue;
                     }
-
-                    countOfProducts[nomOfProd - 1] += countOfProd;
-                    fillOrNot[nomOfProd - 1] = true;
+                    if (countOfProd == 0) {
+                        countOfProducts[nomOfProd - 1] = 0;
+                        fillOrNot[nomOfProd - 1] = false;
+                    } else {
+                        if (countOfProducts[nomOfProd - 1] + countOfProd < 0) {
+                            System.out.println("В корзине не может быть отрицательное количество!!!");
+                        } else {
+                            countOfProducts[nomOfProd - 1] += countOfProd;
+                            fillOrNot[nomOfProd - 1] = true;
+                        }
+                    }
                 }
-
             } else {
                 System.out.println("Необходимо номер продукта и количество разделить пробелом!");
             }
